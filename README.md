@@ -5,11 +5,11 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false, unique: true|
-|email|string|null: false, foreign_key: true|
+|email|string|null: false|
 |password|string|null: false|
 
 ### Association
-- belongs_to :group
+- has_many :groups
 - has_many :messages
 - has_many :groups, through: :members
 
@@ -20,8 +20,6 @@
 |name|string|null: false|
 
 ### Association
-- belongs_to :group
-- belongs_to :user
 - has_many :users, through: :members
 
 ## membersテーブル
@@ -41,7 +39,6 @@
 |------|----|-------|
 |body|text|null: false|
 |image|string|
-|group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 
 ### Association
