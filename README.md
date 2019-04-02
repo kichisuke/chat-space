@@ -7,6 +7,7 @@
 |name|string|null: false, unique: true|
 |email|string|null: false|
 |password|string|null: false|
+ add_index :name, :email
 
 ### Association
 - has_many :groups
