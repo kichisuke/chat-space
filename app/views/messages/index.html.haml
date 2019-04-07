@@ -1,0 +1,68 @@
+!!!
+.flash-box
+	.notice
+		グループを作成しました
+
+.wrapper
+	.chat-side
+		.side-header
+			%p.side-header__user-name
+				test-user
+			%ul.user-menu
+				%li.user-menu__edit-user
+					%a{ :href => 'http://google.co.jp'}
+						%i.fa.fa-edit
+				%li.user-menu__new-group
+					%a{ :href => 'http://google.co.jp'}
+						%i.fa.fa-cog
+		.groups
+			%a
+				.group
+					.group__group-name
+						test-group
+					.group__latest-message
+						さようなら
+			%a
+				.group
+					.group__group-name
+						sample-group
+					.group__latest-message
+						hello!
+			%a
+				.group
+					.group__group-name
+						example
+					.group__latest-message
+						まだメッセージがありません
+	.chat-main
+		.main-header
+			.current-group
+				%h2.current-group__name
+					test-group
+					%ul.member-list
+						Member：
+						%li.member-list__member
+							test-user
+			%a
+				.main-header__edit-btn Edit
+		.messages
+			.massage
+				.upper-info
+					%p.upper-info__user test-user
+					%p.upper-info__date 2019/03/13(Web) 17:50:36
+			%p.message__text こんにちは！
+			.massage
+				.upper-info
+					%p.upper-info__user test-user
+					%p.upper-info__date 2019/02/13(Web) 17:50:42
+			%p.message__text さようなら
+		.form
+			%form.new-message{:id=>"new_message", :enctype=>"multipart/form-data",:method => "post", "accept-charset" => "UTF-8"}
+				%input{:name => "utf-8", :type => "hidden", :value => "✓"}
+				%input{:type => "hidden", :name => "authenticity-token"}
+				.input-box
+					%input.input-box__text{:placeholder => "type a message", :type => "text", :name => "message[content]", :id => "message_content"}
+					%label.image-label{:for => "message_image"}
+						%i.fa.fa-image
+						%input.image-label__input{:type => "file", :name=>"message[image]", :id => "message_image"}
+				%input.new-message__submit-btn{:type => "submit", :name => "commit", :value => "Send", "data-disable-with" => "Send"}
