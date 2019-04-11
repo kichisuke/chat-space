@@ -9,11 +9,11 @@
         test-user
       %ul.user-menu
         %li.user-menu__edit-user
-          %a{ href: 'http://google.co.jp'}
+          = link_to 'http://google.co.jp' do
             %i.fa.fa-edit
-          %li.user-menu__new-group
-            %a{ href: 'http://google.co.jp'}
-              %i.fa.fa-cog
+        %li.user-menu__edit-user
+          = link_to 'http://google.co.jp' do
+            %i.fa.fa-cog
     .groups
       %a
         .group
