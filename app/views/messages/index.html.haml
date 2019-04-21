@@ -56,12 +56,10 @@
       %p.upper-info__date 2019/02/13(Web) 17:50:42
     %p.message__text さようなら
 .form
-  %form.new-message{id: "new_message", enctype: "multipart/form-data",method: "post", "accept-charset": "UTF-8"}
-    %input{name: "utf-8", type: "hidden", value: "✓"}
-    %input{type: "hidden", name: "authenticity-token"}
-    .input-box
-      %input.input-box__text{placeholder: "type a message", type: "text", name: "message[content]", id: "message_content"}
-        %label.image-label{for: "message_image"}
-          %i.fa.fa-image
-            %input.image-label__input{type: "file", name: "message[image]", id: "message_image"}
-    %input.new-message__submit-btn{type: "submit", name:  "commit", value: "Send", "data-disable-with": "Send"}
+  = form_for [@group, @message] do |f|
+    = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+    .form__mask
+      = f.label :image, class: 'form__mask__image' do
+        = fa_icon 'picture-o', class: 'icon'
+        = f.file_field :image, class: 'hidden'
+      = f.submit 'Send', class: 'form__submit' 
