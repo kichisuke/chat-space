@@ -46,15 +46,7 @@
       .main-header__edit-btn Edit
 .messages
   .message
-    .upper-info
-      %p.upper-info__user test-user
-      %p.upper-info__date 2019/03/13(Web) 17:50:36
-    %p.message__text こんにちは！
-  .message
-    .upper-info
-      %p.upper-info__user test-user
-      %p.upper-info__date 2019/02/13(Web) 17:50:42
-    %p.message__text さようなら
+    = render @messages
 .form
   = form_for [@group, @message] do |f|
     = f.text_field :content, class: 'form__message', placeholder: 'type a message'
