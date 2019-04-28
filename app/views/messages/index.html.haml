@@ -1,6 +1,6 @@
 !!!
 .flash-box
-  .notice
+  .flash-box
     グループを作成しました
 .wrapper
   .chat-side
@@ -41,25 +41,17 @@
       %ul.member-list
         Member：
         %li.member-list__member
-          test-user
+          - @group.users.each do |user|
+            = user.name
     %a
       .main-header__edit-btn Edit
-.messages
-  .message
-    .upper-info
-      %p.upper-info__user test-user
-      %p.upper-info__date 2019/03/13(Web) 17:50:36
-    %p.message__text こんにちは！
-  .message
-    .upper-info
-      %p.upper-info__user test-user
-      %p.upper-info__date 2019/02/13(Web) 17:50:42
-    %p.message__text さようなら
-.form
-  = form_for [@group, @message] do |f|
-    = f.text_field :content, class: 'form__message', placeholder: 'type a message'
-    .form__mask
-      = f.label :image, class: 'form__mask__image' do
-        = fa_icon 'picture-o', class: 'icon'
-        = f.file_field :image, class: 'hidden'
-      = f.submit 'Send', class: 'form__submit' 
+  .messages
+    = render @messages
+  .form
+    = form_for [@group, @message] do |f|
+      .input-box
+        = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+        = f.label :image, class: 'image-label' do
+          = fa_icon 'picture-o', class: 'icon'
+          = f.file_field :image, class: 'image-label__input'
+      = f.submit 'Send', class: 'new_message__submit-btn' 
