@@ -44,12 +44,11 @@ $(function(){
       contentType: false
     })
     .done(function(data){
-    var html = buildHTML(data);
-    $('.messages').append(html)
-    $('.input-box__text').val("")
-    $('.image-label__input').val("")
-    $('.messages').animate({scrollTop: $(window).height()*1000}, 50);
-    $('.new_message__submit-btn').attr('disabled', false);
+      var html = buildHTML(data);
+      $('.messages').append(html);
+      $('.new_message')[0].reset();
+      $('.messages').animate({scrollTop: $(window).height()*1000}, 50);
+      $('.new_message__submit-btn').attr('disabled', false);
     })  
     .fail(function(){
       alert('error');
