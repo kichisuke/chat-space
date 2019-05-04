@@ -41,7 +41,7 @@ $(function(){
     .fail(function() { 
         window.alert("ユーザー検索に失敗しました");
     })
-});
+  });
 
   //追加ボタンを押したときに発火するイベント
   $(document).on("click",".user-search-add.chat-group-user__btn.chat-group-user__btn--add", function(){
