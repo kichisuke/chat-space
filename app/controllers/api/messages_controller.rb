@@ -2,7 +2,7 @@ class Api::MessagesController < ApplicationController
   before_action :set_group
 
   def index
-    @messages = Message.where("id > #{params[:id]}")
+    @message = Message.where("id > #{params[:id]}")
     respond_to do |format|
       format.html
       format.json

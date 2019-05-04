@@ -7,50 +7,17 @@ $(function(){
       dataType: 'json',
       data: {id: last_message_id}
     })
-    .done(function(messages){
-      messages.forEach(function(messages){
+    .done(function(message){
+      message.forEach(function(message){
         var height = jQuery($('.messages')).get(0).scrollHeight;
-        var inserthtml = insertHTML(messages);
+        var inserthtml = buildMessageHTML(message);
         $('.messages').append(inserthtml);
         $('.messages').animate({scrollTop: height}, 50);   
       });
       })
     .fail(function(){
-      console.log('error');
-    });
-    };
-
-    var insertHTML = function(messages) {
-      var content = '<div class="message" data-message-id=' + messages.id + '>' +
-          '<div class="upper-info">' +
-            '<div class="upper-info__user">' +
-              messages.user_name +
-            '</div>' +
-            '<div class="upper-info__date">' +
-              messages.created_at +
-            '</div>' +
-          '</div>'
-
-      if (messages.content && messages.image.url) {
-        var html = content +
-            '<p class="message__text">' +
-              messages.content +
-            '</p>' +
-            '<img src="' + messages.image.url + '" class="lower-message__image" >' +
-          '</div>'
-      } else if (messages.content) { 
-        var html = content +
-          '<p class="message__text">' +
-              messages.content +
-            '</p>' +
-          '</div>'
-      } else if (messages.image.url) {
-        var html = content +
-          '<div class="message__text">' +
-            '<img src="' + messages.image.url + '" class="lower-message__image" >' +
-          '</div>'
-      };
-      return html;
+      alert('自動更新時にエラーが発生しました');
+    }); 
     };
 
     var buildMessageHTML = function(message) {
