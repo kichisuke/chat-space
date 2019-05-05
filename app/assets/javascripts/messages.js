@@ -1,6 +1,7 @@
 $(function(){
   var reloadMessages = function(){
-    last_message_id = $('.message').last().attr('data-message-id');
+
+    if(last_message_id = $('.message').last().attr('data-message-id')){
     $.ajax({
       url:"api/messages",
       type: 'get',
@@ -17,7 +18,8 @@ $(function(){
       })
     .fail(function(){
       alert('自動更新時にエラーが発生しました');
-    }); 
+    });
+    } 
     };
 
     var buildMessageHTML = function(message) {
