@@ -1,6 +1,5 @@
 $(function(){
   var reloadMessages = function(){
-    console.log(last_message_id);
     if(last_message_id = $('.message').last().attr('data-message-id')){
 
     $.ajax({
