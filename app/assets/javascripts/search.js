@@ -44,12 +44,9 @@ $(function(){
     })
   });
 
-  //ページ読み込み時に発火するイベント(editアクション時のみよみこむようにする？？)
-  if(last_message_id = $('.edit_group').last().attr('method')){ //ここのif文をもっとよく
+  if(last_message_id = $('.edit_group').last().attr('method')){
 
-    var groupname = $(".chat__group_name.chat-group-form__input").attr("value");
     var groupid = location.pathname.replace(/[^0-9]/g, '');
-    console.log(groupid);
 
     $(document).ready(function(){
       $.ajax({
