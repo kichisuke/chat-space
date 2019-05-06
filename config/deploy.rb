@@ -36,6 +36,7 @@ desc 'upload secrets.yml'
   end
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
+end
 
 set :default_env, {
   rbenv_root: "/usr/local/rbenv",
