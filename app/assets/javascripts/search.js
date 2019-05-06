@@ -12,7 +12,7 @@ $(function(){
   }
 
   function addUser(id,username){
-    var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-8'>
+    var html = `<div class='chat-group-user clearfix js-chat-member' id=${id}>
     <input name='group[user_ids][]' type='hidden' value=${id}>
     <p class='chat-group-user__name'>${username}</p>
     <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
@@ -20,6 +20,7 @@ $(function(){
     member_list.append(html);
   }  
  
+  //ユーザ検索時に発火するイベント
   $("#user-search-field").on("keyup",function(){
     var input = $("#user-search-field").val();
 
@@ -42,6 +43,33 @@ $(function(){
         window.alert("ユーザー検索に失敗しました");
     })
   });
+
+  //ページ読み込み時に発火するイベント(editアクション時のみよみこむようにする？？)
+  if(last_message_id = $('.edit_group').last().attr('method')){ //ここのif文をもっとよく
+
+    var groupname = $(".chat__group_name.chat-group-form__input").attr("value");
+    var groupid = location.pathname.replace(/[^0-9]/g, '');
+    console.log(groupid);
+
+    $(document).ready(function(){
+      $.ajax({
+        type: 'GET',
+        url: '/users/show',
+        data: { keyword: groupid },
+        dataType: 'json'
+      })
+  
+      .done(function(users) {
+          
+          users.forEach(function(user){
+            addUser(user.id,user.name);
+          });
+      })
+      .fail(function() { 
+          window.alert("ユーザー検索に失敗しました");
+      })
+    });
+  }
 
   //追加ボタンを押したときに発火するイベント
   $(document).on("click",".user-search-add.chat-group-user__btn.chat-group-user__btn--add", function(){

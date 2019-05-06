@@ -19,6 +19,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @group = Group.where(id: "#{params[:keyword]}")
+    @users = User.joins(:group_users).where.not(users: {id: current_user.id}).where(group_users: {group_id: @group.ids})
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
   private
 
   def user_params
