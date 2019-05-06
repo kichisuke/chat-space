@@ -2,6 +2,7 @@ $(function(){
   var reloadMessages = function(){
 
     if(last_message_id = $('.message').last().attr('data-message-id')){
+      console.log(last_message_id);
 
     $.ajax({
       url:"api/messages",
